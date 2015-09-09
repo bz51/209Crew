@@ -1,6 +1,3 @@
-<!-- <!DOCTYPE hibernate-configuration PUBLIC
-        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"> -->
 <!DOCTYPE hibernate-configuration PUBLIC
  "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
  "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
@@ -14,31 +11,18 @@
      
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">bz220382</property>
-       <property name="hibernate.connection.url">jdbc:mysql://115.28.217.42:3306/web209?characterEncoding=utf-8</property>
-        <!-- 
-      <property name="hibernate.connection.username">erhuo</property>
-          <property name="hibernate.connection.url">jdbc:mysql://115.29.226.21:3306/2goods?characterEncoding=utf-8</property>
-      <property name="hibernate.connection.password">erhuo</property>
-        -->
-        <!-- 
-        <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>  
-        <property name="hibernate.c3p0.max_size">30</property>        
-        <property name="hibernate.c3p0.min_size">1</property>            
-        <property name="hibernate.c3p0.timeout">1800</property>            
-        <property name="hibernate.c3p0.max_statements">1000</property>            
-        <property name="hibernate.c3p0.idle_test_period">30000</property>            
-        <property name="hibernate.c3p0.acquire_increment">1</property>            
-        <property name="hibernate.c3p0.validate">true</property>  
-         -->
+       <property name="hibernate.connection.url">jdbc:mysql://115.28.217.42:3306/209Crew?characterEncoding=utf-8</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.show_sql">true</property><!-- 配置显示sql语句 -->
   		<property name="format_sql">true</property><!-- 让输出的sql语句格式化 -->
   		
         
          
-        <mapping class="com.nupt.entity.MembersEntity"/>
+        <mapping class="com.nupt.entity.ExperienceEntity"/>
         <mapping class="com.nupt.entity.ProjectEntity"/>
-        <mapping class="com.nupt.entity.Pro_memEntity"/>
+        <mapping class="com.nupt.entity.PublicationEntity"/>
+        <mapping class="com.nupt.entity.ResumeEntity"/>
+        <mapping class="com.nupt.entity.UserEntity"/>
         
     </session-factory>
 </hibernate-configuration>
