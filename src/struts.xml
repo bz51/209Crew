@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+			
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+    <constant name="struts.custom.i18n.resources" value="messageResource"/>
+    <constant name="struts.i18n.encoding" value="utf-8"/>
+    <constant name="struts.multipart.maxSize" value="55000000"/>
+    
+    <!-- 父包，用于什么都不写跳转到首页 -->
+    <package name="default" namespace="/" extends="struts-default">
+    	<default-action-ref name="index" />
+    	<action name="index">
+    		<interceptor-ref name="defaultStack">  
+    			<param name="exception.logEnabled">true</param>  
+  			</interceptor-ref>  
+        	<!-- result四种：dispatcher、redirect、chain、redirectAction -->
+            <result type="redirectAction">index/indexAction!getIndex</result>
+        </action>
+    </package>
+
+	<!-- 首页 -->
+    <package name="index" namespace="/index" extends="default">
+        <global-results>
+            <result name="error">/html/error.jsp</result>
+        </global-results>
+		
+		<action name="indexAction" class="com.nupt.action.IndexAction">
+			<!-- 获取首页信息 -->
+			<!-- <result name="getIndex">/html/error.jsp</result>  -->
+			<result name="getIndex">/html/index.jsp</result>
+		</action>
+    </package>
+
+	<!-- 项目模块 -->
+    <package name="project" namespace="/project" extends="default">
+        <global-results>
+            <result name="error">/html/error.jsp</result>
+        </global-results>
+		
+		<action name="projectAction" class="com.nupt.action.ProjectAction">
+			<!-- 获取所有项目信息 -->
+			<result name="getProjects">/html/projects.jsp</result>
+			<!-- 根据项目id获取项目 -->
+			<result name="getProjectById">/html/projectDetail.jsp</result>
+			<!-- 创建/修改一个项目 -->
+			<result name="addProject" type="redirectAction">
+				<param name="namespace">/index</param>
+				<param name="actionName">indexAction</param>
+				<param name="method">getIndex</param>
+			</result>
+			<!-- 删除一个项目 -->
+			<result name="deleteProject" type="redirectAction">
+				<param name="namespace">/index</param>
+				<param name="actionName">indexAction</param>
+				<param name="method">getIndex</param>
+			</result>
+		</action>
+    </package>
+
+	<!-- 成员模块 -->
+    <package name="members" namespace="/members" extends="project">
+		<action name="membersAction" class="com.nupt.action.MembersAction">
+			<!-- 获取所有成员信息 -->
+			<result name="getMembers">/html/members.jsp</result>
+			<!-- 根据成员id获取成员信息 -->
+			<result name="getMemberById">/html/memDetail.jsp</result>
+			<!-- 获取本实验室的所有项目(本接口用于在打开创建页面时加载所有的项目) -->
+			<result name="getAllProjects">/html/addMember.jsp</result>
+			<!-- 创建一个成员 -->
+			<result name="addMember" type="redirectAction">
+				<param name="namespace">/index</param>
+				<param name="actionName">indexAction</param>
+				<param name="method">getIndex</param>
+			</result>
+			<!-- 删除一个成员 -->
+			<result name="deleteMember" type="redirectAction">
+				<param name="namespace">/index</param>
+				<param name="actionName">indexAction</param>
+				<param name="method">getIndex</param>
+			</result>
+		</action>
+    </package>
+
+
+    <!-- Add packages here 
+    <include file="com/user/service/user-structs.xml"></include>
+	-->
+</struts>
