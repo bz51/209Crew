@@ -26,13 +26,13 @@ public class ResumeDaoCreateResumeImpl extends HibernateTemplate {
 	@Override
 	protected Session handle(Session session) {
 		//往resume表中插入ResumeEntity
-		session.save(resumeEntity);
+		session.saveOrUpdate(resumeEntity);
 		//往experience 表中插入
 		for(ExperienceEntity e : expList)
-			session.save(e);
+			session.saveOrUpdate(e);
 		//往publication表中插入多条记录
 		for(PublicationEntity e : pubList)
-			session.save(e);
+			session.saveOrUpdate(e);
 		
 		return session;
 	}

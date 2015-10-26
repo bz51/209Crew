@@ -26,17 +26,17 @@ public class ResumeDaoUpdateResumeImpl extends HibernateTemplate {
 	@Override
 	protected Session handle(Session session) {
 		//修改resume表
-		session.save(resumeEntity);
+		session.update(resumeEntity);
 		
 		//修改项目经验表
 		if(expList.size()>0)
 			for(ExperienceEntity e : expList)
-				session.save(e);
+				session.update(e);
 		
 		//修改著作表
 		if(pubList.size()>0)
 			for(PublicationEntity e : pubList)
-				session.save(e);
+				session.update(e);
 		
 		return session;
 	}

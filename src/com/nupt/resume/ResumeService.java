@@ -131,10 +131,6 @@ public class ResumeService {
 		//执行删除
 		return resumeDao.deleteResume(user_id);
 	}
-	
-	public ResumeDao getResumeDao() {
-		return resumeDao;
-	}
 
 
 	public ResumeEntity getResumeEntity() {
@@ -145,6 +141,12 @@ public class ResumeService {
 	public List<PublicationEntity> getPubList() {
 		return pubList;
 	}
+
+
+	public List<ExperienceEntity> getExpList() {
+		return expList;
+	}
+	
 	
 	
 }
